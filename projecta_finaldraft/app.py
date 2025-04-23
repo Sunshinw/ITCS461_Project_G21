@@ -32,13 +32,19 @@ if img_input is not None:
             if st.button("Register"):
                 if username:
                     # Save to CSV
+                    os.makedirs("data", exist_ok=True)
                     df_path = "data/features.csv"
                     new_data = pd.DataFrame([{
-                        "username": username,
-                        "width": features[0],
-                        "height": features[1],
-                        "aspect_ratio": features[2]
-                    }])
+                    "username": username,
+                    "thumb": features[0],
+                    "index": features[1],
+                    "middle": features[2],
+                    "ring": features[3],
+                    "pinky": features[4],
+                    "span": features[5],
+                    "aspect_ratio": features[6]
+                }])
+
                     if os.path.exists(df_path):
                         df = pd.read_csv(df_path)
                         df = pd.concat([df, new_data], ignore_index=True)
